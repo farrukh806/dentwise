@@ -5,6 +5,7 @@ import { Button } from '../ui/button';
 import SignUpButton from '../common/sign-up-button';
 import Testimonials from './testimonials';
 import Image from 'next/image';
+import ActionSection from './action-section';
 
 const Hero = () => {
   return (
@@ -21,21 +22,7 @@ const Hero = () => {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left side */}
             <div className="space-y-6 md:space-y-8 lg:space-y-10">
-              <div className="space-y-4 md:space-y-6">
-                {/* Badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-linear-to-r from-primary/10 to-primary/5 rounded-full border border-primary/20 backdrop-blur-sm">
-                  <span className="w-2 h-2 rounded-full animate-pulse bg-primary"></span>
-                  <span className="text-xs md:text-sm">AI-Powered Dental Assistant</span>
-                </div>
-                {/* Heading */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Your dental <span className="text-primary">questions</span> answered instantly
-                </h1>
-                <p className="text-sm sm:text-base md:text-lg text-muted-foreground">
-                  Chat with our AI dental assistant for instant advice, book smart appointments, and
-                  get personalized care recommendations. Available 24/7, no waiting required.
-                </p>
-              </div>
+              <ActionSection />
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                 <SignInButton>
