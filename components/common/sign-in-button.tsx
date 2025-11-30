@@ -12,7 +12,7 @@ const SignInButton: React.FC<ISignInButtonProps> = ({ children, ...props }) => {
       {children ? (
         children
       ) : (
-        <Button variant={'default'} size={'sm'}>
+        <Button variant={'outline'} size={'sm'}>
           Sign In
         </Button>
       )}

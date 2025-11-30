@@ -24,7 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        variables: {
+          colorPrimary: 'var(--primary)',
+          colorText: 'var(--foreground)',
+          fontFamily: 'var(--font-geist-sans)',
+          colorForeground: 'var(--foreground)',
+          colorMutedForeground: 'var(--muted)',
+        },
+      }}
+    >
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
           {children}
