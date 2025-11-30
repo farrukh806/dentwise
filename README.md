@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DentWise - Your AI-Powered Dental Assistant
 
-## Getting Started
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=flat-square)
+![Next.js](https://img.shields.io/badge/Next.js-16.0.5-black?style=flat-square)
+![React](https://img.shields.io/badge/React-19.2.0-blue?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
-First, run the development server:
+## 📋 Project Overview
+
+DentWise is an AI-powered dental assistant application that helps users get instant answers about dental concerns, receive preliminary diagnoses, connect with qualified dentists, and track their dental health journey.
+
+### Features
+
+- **Ask Questions**: Chat with our AI assistant about any dental concerns
+- **Get Diagnosis**: Receive AI-powered preliminary diagnosis based on your symptoms
+- **Find Dentist**: Connect with qualified dentists in your area
+- **Track Progress**: Monitor your dental health journey with detailed records
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/farrukh806/dentiwise.git
+cd dentiwise
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Set up environment variables
+
+```bash
+cp .env.example .env.local
+```
+
+4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Frontend**: Next.js 16, React 19, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui
+- **Authentication**: Clerk
+- **Form Management**: React Hook Form, Zod
+- **UI Components**: Radix UI, Lucide Icons
+- **Charts**: Recharts
+- **Code Quality**: ESLint, Prettier (with Husky pre-commit hooks)
 
-## Learn More
+## 🔧 Available Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Development server
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build for production
+npm run build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Start production server
+npm start
 
-## Deploy on Vercel
+# Run linter
+npm run lint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Format code with Prettier
+npm run format
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Check formatting
+npm run format:check
+```
+
+## 📁 Project Structure
+
+```
+├── app/                    # Next.js app directory
+├── components/             # Reusable React components
+│   ├── ui/                # shadcn/ui components
+│   └── landing/           # Landing page components
+├── hooks/                 # Custom React hooks
+├── lib/                   # Utility functions
+├── public/                # Static assets
+├── .husky/               # Git hooks
+├── package.json
+└── tsconfig.json
+```
+
+## 🛠️ Development Setup
+
+### Code Formatting
+
+This project uses Prettier with Husky for automatic code formatting before commits:
+
+```bash
+npm run format        # Format all files
+npm run format:check  # Check formatting
+```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## 📝 Contributing
+
+Contributions are welcome! Please follow these guidelines:
+
+1. Create a new branch for your feature
+2. Make your changes
+3. Ensure code is formatted with Prettier
+4. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📧 Contact
+
+For questions or feedback, please reach out to the project maintainer.
+
+---
+
+**Note**: This project is currently in progress. Features and documentation may be updated frequently.
