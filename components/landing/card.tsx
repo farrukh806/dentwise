@@ -20,7 +20,7 @@ const CardItem = ({ title, description, image, badges, stepNumber }: CardProps) 
         src={image}
         width={120}
         height={120}
-        alt="Audio"
+        alt="Icon"
         className="w-30 h-30 object-cover row-start-1 row-end-2 mx-auto"
       />
       <h3 className="row-start-2 row-end-3 text-xl font-semibold">{title}</h3>

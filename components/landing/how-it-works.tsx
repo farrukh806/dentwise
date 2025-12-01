@@ -1,6 +1,7 @@
 import Badge from '../common/badge';
-import { ZapIcon } from 'lucide-react';
+import { ArrowRight, ZapIcon } from 'lucide-react';
 import Card from './card';
+import { Button } from '../ui/button';
 
 const HowItWorks = () => {
   return (
@@ -44,6 +45,12 @@ const HowItWorks = () => {
           stepNumber={3}
         />
       </div>
+      <Button className="mt-10 font-bold text-md mx-auto flex items-center" size="lg">
+        <span>
+          <ArrowRight className="mr-2 h-6 w-6" />
+        </span>
+        <span> Get started now</span>
+      </Button>
     </section>
   );
 };
