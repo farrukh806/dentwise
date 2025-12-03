@@ -90,7 +90,21 @@ npm run format:check
 ├── app/                    # Next.js app directory
 ├── components/             # Reusable React components
 │   ├── ui/                # shadcn/ui components
+│   ├── common/            # Common components (Badge, etc.)
 │   └── landing/           # Landing page components
+│       ├── header.tsx
+│       ├── hero.tsx
+│       ├── how-it-works.tsx
+│       ├── card.tsx
+│       ├── pricing.tsx
+│       ├── pricing-card.tsx
+│       ├── testimonials.tsx
+│       ├── cta.tsx
+│       ├── footer.tsx
+│       ├── action-section.tsx
+│       ├── question.tsx
+│       ├── what-to-ask.tsx
+│       └── question.tsx
 ├── hooks/                 # Custom React hooks
 ├── lib/                   # Utility functions
 ├── public/                # Static assets
@@ -98,6 +112,23 @@ npm run format:check
 ├── package.json
 └── tsconfig.json
 ```
+
+## 🧩 Components Overview
+
+### Landing Page Components
+
+- **Header**: Navigation header for the landing page
+- **Hero**: Main hero section with call-to-action
+- **HowItWorks**: Four-step process section (Ask Questions, Get Diagnosis, Find Dentist, Track Progress)
+- **Card**: Reusable card component for displaying features
+- **Pricing**: Pricing section with multiple pricing tiers
+- **PricingCard**: Individual pricing card with "Most Popular" badge
+- **Testimonials**: Customer testimonials carousel
+- **CTA**: Call-to-action sections
+- **Footer**: Footer with links and company info
+- **ActionSection**: Action-driven content sections
+- **Question**: FAQ or question components
+- **WhatToAsk**: Suggested questions/prompts section
 
 ## 🛠️ Development Setup
 
