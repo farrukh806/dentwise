@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -13,6 +13,7 @@
   "dependencies": {
     "@clerk/nextjs": "^6.35.5",
     "@hookform/resolvers": "^5.2.2",
+    "@prisma/adapter-pg": "^7.1.0",
     "@prisma/client": "^7.0.1",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
