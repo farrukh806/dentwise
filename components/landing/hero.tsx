@@ -1,4 +1,3 @@
-import React from 'react';
 import SignInButton from '../common/sign-in-button';
 import { Calendar, Mic, Star } from 'lucide-react';
 import { Button } from '../ui/button';
@@ -22,7 +21,21 @@ const Hero = () => {
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left side */}
             <div className="space-y-6 md:space-y-8 lg:space-y-10">
-              <ActionSection />
+              <ActionSection
+                badge={
+                  <>
+                    <span className="w-2 h-2 rounded-full animate-pulse bg-primary"></span>
+                    <span className="text-xs md:text-sm">AI-Powered Dental Assistant</span>
+                  </>
+                }
+                headingHighlight={
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    Your dental <span className="text-primary">questions</span> answered instantly
+                  </h1>
+                }
+                description="Chat with our AI dental assistant for instant advice, book smart appointments, and get
+        personalized care recommendations. Available 24/7, no waiting required."
+              />
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
                 <SignInButton>
