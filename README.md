@@ -88,9 +88,20 @@ npm run format:check
 
 ```
 ├── app/                    # Next.js app directory
+│   ├── admin/             # Admin pages
+│   └── prisma/            # Prisma generated types
 ├── components/             # Reusable React components
 │   ├── ui/                # shadcn/ui components
-│   ├── common/            # Common components (Badge, etc.)
+│   ├── admin/             # Admin-specific components
+│   │   ├── status-card.tsx
+│   │   └── status-table-item.tsx
+│   ├── common/            # Common shared components
+│   │   ├── badge.tsx
+│   │   ├── data-table.tsx
+│   │   ├── navbar.tsx
+│   │   ├── sign-in-button.tsx
+│   │   ├── sign-up-button.tsx
+│   │   └── user-sync.tsx
 │   └── landing/           # Landing page components
 │       ├── header.tsx
 │       ├── hero.tsx
@@ -103,11 +114,11 @@ npm run format:check
 │       ├── footer.tsx
 │       ├── action-section.tsx
 │       ├── question.tsx
-│       ├── what-to-ask.tsx
-│       └── question.tsx
+│       └── what-to-ask.tsx
 ├── hooks/                 # Custom React hooks
-├── lib/                   # Utility functions
+├── lib/                   # Utility functions and actions
 ├── public/                # Static assets
+├── prisma/                # Prisma schema and migrations
 ├── .husky/               # Git hooks
 ├── package.json
 └── tsconfig.json
@@ -129,6 +140,20 @@ npm run format:check
 - **ActionSection**: Action-driven content sections
 - **Question**: FAQ or question components
 - **WhatToAsk**: Suggested questions/prompts section
+
+### Common Components
+
+- **Badge**: Reusable badge component for displaying labels and status indicators
+- **DataTable**: Reusable data table component built with TanStack Table for displaying tabular data with sorting, filtering, and pagination
+- **Navbar**: Main navigation bar component with user authentication, responsive mobile menu, and navigation links (Dashboard, Appointments, Voice, Pro)
+- **SignInButton**: Wrapper component for Clerk's sign-in functionality with modal mode
+- **SignUpButton**: Wrapper component for Clerk's sign-up functionality with modal mode
+- **UserSync**: Client component that automatically synchronizes authenticated user data with the database
+
+### Admin Components
+
+- **StatusCard**: Card component for displaying status metrics with icon, count, and description (used in admin dashboard)
+- **StatusTableItem**: Table row component for displaying doctor information including avatar, name, specialty, contact details, appointment count, and action buttons
 
 ## 🛠️ Development Setup
 
