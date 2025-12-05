@@ -3,6 +3,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import UserSync from '@/components/common/user-sync';
+import Providers from '@/components/providers';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -38,8 +40,9 @@ export default function RootLayout({
     >
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+          <Toaster />
           <UserSync />
-          {children}
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ClerkProvider>
