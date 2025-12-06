@@ -3,13 +3,14 @@ import StatusTableItem from '@/components/admin/status-table-item';
 import Badge from '@/components/common/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { getDoctors } from '@/lib/actions/doctors';
 import { currentUser } from '@clerk/nextjs/server';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Settings, Stethoscope } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import { getQueryClient } from '../query-client';
 import { doctorQueryOptions } from '@/lib/query-options/doctor';
+import { appointmentQueryOptions } from '@/lib/query-options/appointment';
+import AppointmentTable from '@/components/admin/appointment-table';
 
 const STATUS_TABLE_ITEMS = [
   {
@@ -28,8 +29,10 @@ const AdminPage = async () => {
   if (user.emailAddresses[0].emailAddress !== process.env.ADMIN_EMAIL) redirect('/');
 
   const queryClient = getQueryClient();
-
-  await queryClient.prefetchQuery(doctorQueryOptions);
+  await Promise.allSettled([
+    queryClient.prefetchQuery(doctorQueryOptions),
+    queryClient.prefetchQuery(appointmentQueryOptions),
+  ]);
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <section className="container mt-4 mx-auto px-4">
@@ -56,7 +59,6 @@ const AdminPage = async () => {
         {/* Status section */}
         <StatusSection />
 
-        {/* Datatable */}
         <div className="mt-5">
           <Card className="px-5">
             <div className="flex justify-between items-center">
@@ -75,6 +77,8 @@ const AdminPage = async () => {
             ))}
           </Card>
         </div>
+        {/* Datatable */}
+        <AppointmentTable />
       </section>
     </HydrationBoundary>
   );

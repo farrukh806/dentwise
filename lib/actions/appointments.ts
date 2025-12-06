@@ -6,6 +6,7 @@ export async function getAppointments() {
   try {
     const appointments = await prisma.appointment.findMany({
       orderBy: { createdAt: 'desc' },
+      include: { patient: true, doctor: true },
     });
     return appointments;
   } catch (error) {

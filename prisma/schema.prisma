@@ -12,7 +12,7 @@ enum Gender {
   FEMALE
 }
 
-enum ApointmentStatus {
+enum AppointmentStatus {
   SCHEDULED
   COMPLETED
   CANCELED
@@ -54,7 +54,7 @@ model Appointment {
   dateTime  DateTime
   time      String
   duration  Int              @default(30) // duration in minutes
-  status    ApointmentStatus @default(SCHEDULED)
+  status    AppointmentStatus @default(SCHEDULED)
   notes     String?
   reason    String?
   createdAt DateTime         @default(now())

@@ -809,16 +809,16 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'ApointmentStatus'
+ * Reference to a field of type 'AppointmentStatus'
  */
-export type EnumApointmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApointmentStatus'>
+export type EnumAppointmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentStatus'>
     
 
 
 /**
- * Reference to a field of type 'ApointmentStatus[]'
+ * Reference to a field of type 'AppointmentStatus[]'
  */
-export type ListEnumApointmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ApointmentStatus[]'>
+export type ListEnumAppointmentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppointmentStatus[]'>
     
 
 

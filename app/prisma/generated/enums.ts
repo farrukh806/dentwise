@@ -17,10 +17,10 @@ export const Gender = {
 export type Gender = (typeof Gender)[keyof typeof Gender]
 
 
-export const ApointmentStatus = {
+export const AppointmentStatus = {
   SCHEDULED: 'SCHEDULED',
   COMPLETED: 'COMPLETED',
   CANCELED: 'CANCELED'
 } as const
 
-export type ApointmentStatus = (typeof ApointmentStatus)[keyof typeof ApointmentStatus]
+export type AppointmentStatus = (typeof AppointmentStatus)[keyof typeof AppointmentStatus]
