@@ -1,6 +1,4 @@
 'use client';
-const Error = () => {
-  return <div>Error</div>;
-};
-
-export default Error;
+export default function GlobalError({ error }: { error: Error }) {
+  return <div>Something fatal went wrong: {error.message}</div>;
+}

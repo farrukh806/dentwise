@@ -71,14 +71,35 @@ export function AddUpdateDoctor({ defaultValues }: { defaultValues?: AddDoctor &
   }, [open, defaultValues, form]);
 
   const { mutateAsync: createDoctorMutation, isPending: isCreateDoctorPending } = useMutation({
-    mutationFn: createDoctor,
-    onError: (error) => toast.error(error.message),
-    onSuccess: () => toast.success('Doctor added successfully'),
+    mutationFn: async (data: AddDoctor) => {
+      const result = await createDoctor(data);
+      if (!result.success) {
+        throw new Error(result.error);
+      }
+      return result.data;
+    },
+    onError: (error) => {
+      toast.error(error instanceof Error ? error.message : 'Failed to create doctor');
+    },
+    onSuccess: () => {
+      toast.success('Doctor added successfully');
+    },
   });
+
   const { mutateAsync: updateDoctorMutation, isPending: isUpdateDoctorPending } = useMutation({
-    mutationFn: updateDoctor,
-    onError: (error) => toast.error(error.message),
-    onSuccess: () => toast.success('Doctor updated successfully'),
+    mutationFn: async (data: AddDoctor & { id: string }) => {
+      const result = await updateDoctor(data);
+      if (!result.success) {
+        throw new Error(result.error);
+      }
+      return result.data;
+    },
+    onError: (error) => {
+      toast.error(error instanceof Error ? error.message : 'Failed to update doctor');
+    },
+    onSuccess: () => {
+      toast.success('Doctor updated successfully');
+    },
   });
 
   const onSubmit = async (data: AddDoctor) => {
@@ -92,12 +113,8 @@ export function AddUpdateDoctor({ defaultValues }: { defaultValues?: AddDoctor &
       setOpen(false);
       await queryClient.invalidateQueries({ queryKey: doctorQueryOptions.queryKey });
     } catch (error) {
-      console.error('Error creating doctor:', error);
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else {
-        toast.error('Failed to create doctor');
-      }
+      // Error is already handled by onError callbacks, but we can add additional handling here if needed
+      console.error('Error in onSubmit:', error);
     }
   };
 

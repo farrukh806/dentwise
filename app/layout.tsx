@@ -40,7 +40,7 @@ export default function RootLayout({
     >
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
-          <Toaster />
+          <Toaster richColors />
           <UserSync />
           <Providers>{children}</Providers>
         </body>
