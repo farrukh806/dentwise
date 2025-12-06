@@ -37,7 +37,7 @@ model Doctor {
   name         String
   email        String        @unique
   phone        String
-  specialty    String
+  speciality   String
   bio          String?
   imageUrl     String
   gender       Gender
@@ -50,23 +50,22 @@ model Doctor {
 }
 
 model Appointment {
-  id        String           @id @default(uuid())
+  id        String            @id @default(uuid())
   dateTime  DateTime
   time      String
-  duration  Int              @default(30) // duration in minutes
+  duration  Int               @default(30) // duration in minutes
   status    AppointmentStatus @default(SCHEDULED)
   notes     String?
   reason    String?
-  createdAt DateTime         @default(now())
-  updatedAt DateTime         @updatedAt
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
 
   patientId String
   doctorId  String
-  patient   Patient   @relation(fields: [patientId], references: [id], onDelete: Cascade)
-  doctor    Doctor @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-
-  @@map("appointments")
+  patient   Patient @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctor    Doctor  @relation(fields: [doctorId], references: [id], onDelete: Cascade)
 
   @@index([patientId])
   @@index([doctorId])
+  @@map("appointments")
 }

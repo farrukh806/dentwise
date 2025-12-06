@@ -11,17 +11,7 @@ import { getQueryClient } from '../query-client';
 import { doctorQueryOptions } from '@/lib/query-options/doctor';
 import { appointmentQueryOptions } from '@/lib/query-options/appointment';
 import AppointmentTable from '@/components/admin/appointment-table';
-
-const STATUS_TABLE_ITEMS = [
-  {
-    imageUrl: 'https://avatar.iran.liara.run/public/boy',
-    name: 'John Doe',
-    specialty: 'Cardiology',
-    gender: 'MALE' as 'MALE' | 'FEMALE',
-    email: 'john@example.com',
-    phone: '(555)-123-345',
-  },
-];
+import StatusTable from '@/components/admin/status-table';
 
 const AdminPage = async () => {
   const user = await currentUser();
@@ -59,24 +49,7 @@ const AdminPage = async () => {
         {/* Status section */}
         <StatusSection />
 
-        <div className="mt-5">
-          <Card className="px-5">
-            <div className="flex justify-between items-center">
-              <div>
-                <Stethoscope className="w-5 h-5 inline" color="var(--primary)" />
-                <h4 className="font-bold text-sm inline ms-2">Doctors Management</h4>
-                <p className="text-sm mt-1">Manage and oversee all doctors in your practice</p>
-              </div>
-              <Button className="flex items-center gap-2">
-                <span>+</span>
-                <span>Add Doctor</span>
-              </Button>
-            </div>
-            {STATUS_TABLE_ITEMS.map((item) => (
-              <StatusTableItem {...item} key={item.email} />
-            ))}
-          </Card>
-        </div>
+        <StatusTable />
         {/* Datatable */}
         <AppointmentTable />
       </section>
