@@ -1,4 +1,3 @@
-import { DoctorModel as IDoctor } from '@/app/prisma/generated/models';
 import { Card } from '../ui/card';
 import Image from 'next/image';
 import { MessageSquare, Pencil, Phone } from 'lucide-react';
@@ -6,7 +5,7 @@ import { Button } from '../ui/button';
 import { AddUpdateDoctor } from './add-update-doctor';
 import { Gender } from '@/app/prisma/generated/enums';
 
-interface StatusTableItemProps {
+interface DoctorItemProps {
   id: string;
   email: string;
   gender: Gender;
@@ -20,7 +19,7 @@ interface StatusTableItemProps {
   };
 }
 
-const StatusTableItem: React.FC<StatusTableItemProps> = (props) => {
+const DoctorItem: React.FC<DoctorItemProps> = (props) => {
   return (
     <Card className="px-2 flex flex-row items-center justify-between">
       {/* left part */}
@@ -31,6 +30,7 @@ const StatusTableItem: React.FC<StatusTableItemProps> = (props) => {
           className="object-cover w-25 h-25 ring rounded-full"
           width={25}
           height={25}
+          priority
         />
         <div className="flex flex-col gap-2 justify-center">
           <h2 className="text-md font-bold">{props.name}</h2>
@@ -71,4 +71,4 @@ const StatusTableItem: React.FC<StatusTableItemProps> = (props) => {
   );
 };
 
-export default StatusTableItem;
+export default DoctorItem;

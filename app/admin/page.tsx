@@ -1,5 +1,5 @@
 import StatusSection from '@/components/admin/status-section';
-import StatusTableItem from '@/components/admin/status-table-item';
+import StatusTableItem from '@/components/admin/doctor-item';
 import Badge from '@/components/common/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';

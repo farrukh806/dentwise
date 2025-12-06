@@ -2,7 +2,7 @@
 import { Card } from '../ui/card';
 import { AddUpdateDoctor } from './add-update-doctor';
 import { Stethoscope } from 'lucide-react';
-import StatusTableItem from './status-table-item';
+import DoctorItem from './doctor-item';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { doctorQueryOptions } from '@/lib/query-options/doctor';
 
@@ -20,7 +20,7 @@ const StatusTable = () => {
           <AddUpdateDoctor />
         </div>
         {doctors.map((doctor) => (
-          <StatusTableItem key={doctor.id} {...doctor} />
+          <DoctorItem key={doctor.id} {...doctor} />
         ))}
       </Card>
     </div>

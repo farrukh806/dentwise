@@ -70,7 +70,7 @@ export const Navbar = () => {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-primary/5">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/1 backdrop-blur-sm">
       <div className="container w-full mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <div className="flex items-center gap-8">

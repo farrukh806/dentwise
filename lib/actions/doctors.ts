@@ -20,7 +20,11 @@ export async function createDoctor(data: AddDoctor) {
   try {
     const doctor = await prisma.doctor.create({
       data: {
-        ...data,
+        name: data.name,
+        email: data.email,
+        gender: data.gender,
+        phone: data.phone,
+        speciality: data.speciality,
         isActive: data.status === 'active', // Map status string to isActive boolean
         imageUrl: `https://avatar.iran.liara.run/public/${data.gender === 'MALE' ? 'boy' : 'girl'}`,
       },
