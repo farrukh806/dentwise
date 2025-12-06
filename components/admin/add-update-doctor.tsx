@@ -32,7 +32,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { type AddDoctor, addDoctorSchema } from '@/app/validations/add-doctor';
 import { createDoctor, updateDoctor } from '@/lib/actions/doctors';
 import { useState, useEffect } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { doctorQueryOptions } from '@/lib/query-options/doctor';
 import { toast } from 'sonner';
 import { Loader2Icon, Pencil } from 'lucide-react';
@@ -70,12 +70,23 @@ export function AddUpdateDoctor({ defaultValues }: { defaultValues?: AddDoctor &
     }
   }, [open, defaultValues, form]);
 
+  const { mutateAsync: createDoctorMutation, isPending: isCreateDoctorPending } = useMutation({
+    mutationFn: createDoctor,
+    onError: (error) => toast.error(error.message),
+    onSuccess: () => toast.success('Doctor added successfully'),
+  });
+  const { mutateAsync: updateDoctorMutation, isPending: isUpdateDoctorPending } = useMutation({
+    mutationFn: updateDoctor,
+    onError: (error) => toast.error(error.message),
+    onSuccess: () => toast.success('Doctor updated successfully'),
+  });
+
   const onSubmit = async (data: AddDoctor) => {
     try {
       if (defaultValues) {
-        await updateDoctor({ ...data, id: defaultValues.id });
+        await updateDoctorMutation({ ...data, id: defaultValues.id });
       } else {
-        await createDoctor(data);
+        await createDoctorMutation(data);
       }
       form.reset();
       setOpen(false);
@@ -216,7 +227,7 @@ export function AddUpdateDoctor({ defaultValues }: { defaultValues?: AddDoctor &
               <Button type="submit" disabled={form.formState.isSubmitting} className="relative">
                 <Loader2Icon
                   className={
-                    form.formState.isSubmitting
+                    form.formState.isSubmitting || isUpdateDoctorPending || isCreateDoctorPending
                       ? 'size-4 animate-spin absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                       : 'invisible size-4 animate-spin absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
                   }
