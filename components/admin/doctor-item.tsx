@@ -56,9 +56,15 @@ const DoctorItem: React.FC<DoctorItemProps> = (props) => {
           <h3 className="text-md font-bold text-primary">{props._count.appointments}</h3>
           <span className="text-xs">Appointments</span>
         </div>
-        <Button size={'sm'} variant={'ghost'} className="bg-sky-100 text-sky-500 text-xs">
+        <span
+          className={
+            props.isActive
+              ? 'bg-sky-100 text-sky-500 text-xs p-2 rounded-md'
+              : 'bg-red-100 text-red-500 text-xs p-2 rounded-md'
+          }
+        >
           {props.isActive ? 'Active' : 'Inactive'}
-        </Button>
+        </span>
 
         <AddUpdateDoctor
           defaultValues={{
