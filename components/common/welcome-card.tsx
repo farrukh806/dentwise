@@ -11,7 +11,7 @@ interface IWelcomeCardProps {
 
 const WelcomeCard: React.FC<IWelcomeCardProps> = (props) => {
   return (
-    <Card className="px-4">
+    <Card className="px-4 bg-linear-to-br from-primary/10 via-primary/5 to-background rounded-3xl p-8 border border-primary/20">
       <div className="flex justify-between items-center">
         {/* left */}
         <div className="flex flex-col items-start gap-3">

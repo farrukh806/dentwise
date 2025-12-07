@@ -44,3 +44,9 @@ export const PRICING = [
     ],
   },
 ];
+
+export const PLANS = {
+  FREE: 'free',
+  AI_BASIC: 'ai_basic',
+  AI_PRO: 'ai_pro',
+};

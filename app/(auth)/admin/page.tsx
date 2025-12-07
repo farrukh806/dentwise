@@ -9,6 +9,7 @@ import { appointmentQueryOptions } from '@/lib/query-options/appointment';
 import AppointmentTable from '@/components/admin/appointment-table';
 import StatusTable from '@/components/admin/status-table';
 import WelcomeCard from '@/components/common/welcome-card';
+import Wrapper from '@/components/common/container-wrapper';
 
 const AdminPage = async () => {
   const user = await currentUser();
@@ -22,23 +23,21 @@ const AdminPage = async () => {
   ]);
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <section className="container mt-4 mx-auto px-4">
-        {/* Header */}
-        <WelcomeCard
-          headline={`Welcom back, ${user.firstName}!`}
-          description={
-            'Manage doctors, oversee appointments, and monitor your dental practice performance.'
-          }
-          badgeTitle={'Admin Dashboard'}
-          icon={<Settings className="w-10 h-10 md:w-20 md:h-20" color="var(--primary)" />}
-        />
-        {/* Status section */}
-        <StatusSection />
+      {/* Header */}
+      <WelcomeCard
+        headline={`Welcom back, ${user.firstName}!`}
+        description={
+          'Manage doctors, oversee appointments, and monitor your dental practice performance.'
+        }
+        badgeTitle={'Admin Dashboard'}
+        icon={<Settings className="w-10 h-10 md:w-20 md:h-20" color="var(--primary)" />}
+      />
+      {/* Status section */}
+      <StatusSection />
 
-        <StatusTable />
-        {/* Datatable */}
-        <AppointmentTable />
-      </section>
+      <StatusTable />
+      {/* Datatable */}
+      <AppointmentTable />
     </HydrationBoundary>
   );
 };

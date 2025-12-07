@@ -1,3 +1,4 @@
+import Wrapper from '@/components/common/container-wrapper';
 import { Navbar } from '@/components/common/navbar';
 
 interface LayoutProps {
@@ -7,7 +8,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Navbar />
-      {children}
+      <Wrapper>{children}</Wrapper>
     </>
   );
 };

@@ -4,13 +4,14 @@ import { PricingTable } from '@clerk/nextjs';
 import { currentUser } from '@clerk/nextjs/server';
 import { Crown } from 'lucide-react';
 import { redirect } from 'next/navigation';
+import Wrapper from '@/components/common/container-wrapper';
 
 const ProPage = async () => {
   const user = await currentUser();
   if (!user) redirect('/');
 
   return (
-    <section className="container mt-4 mx-auto px-4">
+    <>
       {/* Header */}
       <WelcomeCard
         headline={'Unlock Premium AI Dental Care'}
@@ -31,7 +32,7 @@ const ProPage = async () => {
         </p>
         <PricingTable appearance={{ theme: shadcn }} />
       </div>
-    </section>
+    </>
   );
 };
 
