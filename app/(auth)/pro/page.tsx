@@ -26,9 +26,8 @@ const ProPage = async () => {
           Choose your plan
         </h2>
         <p className="mt-3 text-muted-foreground text-md text-center my-5">
-          Book appointments for free and upgrade for unlimited AI
-          <br />
-          consultations. Perfect for ongoing dental care.
+          Book appointments for free and upgrade for unlimited AI consultations. <br /> Perfect for
+          ongoing dental care.
         </p>
         <PricingTable appearance={{ theme: shadcn }} />
       </div>
