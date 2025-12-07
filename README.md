@@ -15,6 +15,15 @@ DentWise is an AI-powered dental assistant application that helps users get inst
 - **Get Diagnosis**: Receive AI-powered preliminary diagnosis based on your symptoms
 - **Find Dentist**: Connect with qualified dentists in your area
 - **Track Progress**: Monitor your dental health journey with detailed records
+- **Voice Assistant**: AI-powered voice consultations for premium subscribers
+  - Real-time voice recognition
+  - Natural language conversations
+  - Instant AI responses
+  - Conversation history tracking
+- **Subscription Plans**: Flexible pricing tiers with Clerk integration
+  - Free: Basic appointment booking
+  - AI Basic: Limited AI voice consultations
+  - AI Pro: Unlimited AI consultations
 - **Admin Dashboard**: Comprehensive admin panel for managing doctors and appointments
   - Real-time metrics and statistics
   - Doctor management (add, edit, view)
@@ -61,7 +70,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - **Frontend**: Next.js 16, React 19, TypeScript
 - **Styling**: Tailwind CSS, shadcn/ui
-- **Authentication**: Clerk
+- **Authentication**: Clerk (with subscription management via Clerk PricingTable)
 - **Database**: PostgreSQL with Prisma ORM
 - **State Management**: TanStack Query (React Query) for server state
 - **Form Management**: React Hook Form, Zod
@@ -96,7 +105,11 @@ npm run format:check
 
 ```
 ├── app/                    # Next.js app directory
-│   ├── admin/             # Admin pages and dashboard
+│   ├── (auth)/            # Authenticated route group
+│   │   ├── admin/        # Admin dashboard pages
+│   │   ├── pro/          # Subscription/upgrade page
+│   │   ├── voice/        # Voice assistant page
+│   │   └── layout.tsx    # Shared layout for auth routes
 │   ├── prisma/            # Prisma generated types
 │   └── validations/       # Zod validation schemas
 ├── components/             # Reusable React components
@@ -107,31 +120,38 @@ npm run format:check
 │   │   ├── status-card.tsx
 │   │   ├── status-section.tsx
 │   │   ├── status-table.tsx
-│   │   └── status-table-item.tsx
+│   │   └── doctor-item.tsx
 │   ├── common/            # Common shared components
 │   │   ├── badge.tsx
 │   │   ├── data-table.tsx
 │   │   ├── navbar.tsx
 │   │   ├── sign-in-button.tsx
 │   │   ├── sign-up-button.tsx
-│   │   └── user-sync.tsx
-│   └── landing/           # Landing page components
-│       ├── header.tsx
-│       ├── hero.tsx
-│       ├── how-it-works.tsx
-│       ├── card.tsx
-│       ├── pricing.tsx
-│       ├── pricing-card.tsx
-│       ├── testimonials.tsx
-│       ├── cta.tsx
-│       ├── footer.tsx
-│       ├── action-section.tsx
-│       ├── question.tsx
-│       └── what-to-ask.tsx
+│   │   ├── user-sync.tsx
+│   │   ├── welcome-card.tsx
+│   │   └── container-wrapper.tsx
+│   ├── landing/           # Landing page components
+│   │   ├── header.tsx
+│   │   ├── hero.tsx
+│   │   ├── how-it-works.tsx
+│   │   ├── card.tsx
+│   │   ├── pricing.tsx
+│   │   ├── pricing-card.tsx
+│   │   ├── testimonials.tsx
+│   │   ├── cta.tsx
+│   │   ├── footer.tsx
+│   │   ├── action-section.tsx
+│   │   ├── question.tsx
+│   │   └── what-to-ask.tsx
+│   └── voice/             # Voice assistant components
+│       ├── feature-item.tsx
+│       ├── how-to-use-item.tsx
+│       └── pro-plan-require.tsx
 ├── hooks/                 # Custom React hooks
 ├── lib/                   # Utility functions and actions
 │   ├── actions/          # Server actions (doctors, appointments, user)
-│   └── query-options/     # TanStack Query options
+│   ├── query-options/     # TanStack Query options
+│   └── constants.ts       # App constants (pricing, plans)
 ├── public/                # Static assets
 ├── prisma/                # Prisma schema and migrations
 ├── .husky/               # Git hooks
@@ -164,13 +184,15 @@ npm run format:check
 - **SignInButton**: Wrapper component for Clerk's sign-in functionality with modal mode
 - **SignUpButton**: Wrapper component for Clerk's sign-up functionality with modal mode
 - **UserSync**: Client component that automatically synchronizes authenticated user data with the database
+- **WelcomeCard**: Reusable welcome card component with badge, headline, description, and icon. Used across admin, pro, and voice pages for consistent header sections
+- **ContainerWrapper**: Layout wrapper component providing consistent container styling with responsive padding and margins
 
 ### Admin Components
 
 - **StatusCard**: Card component for displaying status metrics with icon, count, and description (used in admin dashboard)
 - **StatusSection**: Dashboard metrics section displaying key statistics including total doctors, active doctors, total appointments, and completed appointments
 - **StatusTable**: Doctors management table component that displays all doctors with their information and provides add/edit functionality
-- **StatusTableItem**: Table row component for displaying doctor information including avatar, name, speciality, gender, contact details, appointment count, active status, and edit button
+- **DoctorItem**: Table row component for displaying doctor information including avatar, name, speciality, gender, contact details, appointment count, active status, and edit button
 - **AddUpdateDoctor**: Dialog form component for adding new doctors or updating existing doctor information. Features include:
   - Form validation using Zod
   - Fields: name, email, phone, speciality, gender, status
@@ -185,6 +207,47 @@ npm run format:check
   - Status (Scheduled, Completed, Canceled) with color-coded badges
   - Action column for future status toggling
 
+### Voice Assistant Components
+
+- **FeatureItem**: Component displaying voice assistant features with icon and title (Real-time Voice Recognition, AI-Powered Responses, Conversation History)
+- **HowToUseItem**: List item component for displaying step-by-step instructions on how to use the voice assistant
+- **ProPlanRequired**: Upgrade prompt component shown to users without AI Basic or AI Pro subscriptions, featuring:
+  - Lock icon and upgrade messaging
+  - Feature highlights
+  - Direct link to upgrade page
+  - Responsive card design with hover effects
+
+## 🎯 Features Overview
+
+### Voice Assistant
+
+The voice assistant feature provides AI-powered dental consultations through natural voice conversations:
+
+- **Access Control**: Requires AI Basic or AI Pro subscription (checked via Clerk plan verification)
+- **Features**:
+  - Real-time voice recognition
+  - AI-powered responses
+  - Conversation history tracking
+- **User Interface**:
+  - Welcome card with feature introduction
+  - Two-column layout with "How to Use" and "Features" sections
+  - Equal-width responsive cards using flexbox
+  - Upgrade prompt for non-subscribers
+- **Layout**: Dedicated route group with shared layout and welcome card
+
+### Subscription Management
+
+- **Pro/Upgrade Page**: Subscription management page featuring:
+  - Welcome card with premium messaging
+  - Clerk PricingTable integration with shadcn theme
+  - Plan selection and upgrade flow
+  - Responsive design with centered content
+- **Plan Tiers**:
+  - **Free**: Unlimited appointment booking, find dentists, basic text chat
+  - **AI Basic**: 10 AI voice calls/month, AI guidance, symptom assessment
+  - **AI Pro**: Unlimited AI voice calls, advanced analysis, personalized care plans
+- **Access Control**: Plan-based feature gating throughout the application
+
 ## 🎯 Admin Dashboard Features
 
 The admin dashboard provides comprehensive management tools for dental practice administrators:
@@ -192,6 +255,7 @@ The admin dashboard provides comprehensive management tools for dental practice 
 ### Dashboard Overview
 
 - **Access Control**: Protected route accessible only to users with admin email (configured via `ADMIN_EMAIL` environment variable)
+- **Welcome Card**: Personalized welcome message with admin name and dashboard description
 - **Real-time Metrics**: Live statistics displayed in status cards:
   - Total number of doctors in the system
   - Count of active doctors
@@ -239,6 +303,10 @@ The admin dashboard provides comprehensive management tools for dental practice 
 - **React Query Integration**: TanStack Query for efficient data fetching, caching, and synchronization
 - **Optimistic Updates**: Automatic cache invalidation after mutations
 - **Type Safety**: Full TypeScript support with Prisma-generated types
+- **Route Groups**: Organized authenticated routes using Next.js route groups `(auth)` for shared layouts
+- **Plan-based Access Control**: Clerk subscription plans (AI_BASIC, AI_PRO) used for feature gating
+- **Responsive Design**: Mobile-first approach with Tailwind CSS utilities for consistent layouts
+- **Theme Integration**: Clerk components styled with shadcn theme for consistent UI
 
 ## 🛠️ Development Setup
 
@@ -264,7 +332,10 @@ Required environment variables:
 
 - `DATABASE_URL`: PostgreSQL connection string
 - `ADMIN_EMAIL`: Email address for admin dashboard access
-- Clerk authentication variables (as per Clerk setup)
+- Clerk authentication variables (as per Clerk setup):
+  - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+  - `CLERK_SECRET_KEY`
+  - Additional Clerk variables for subscription management
 
 ### Code Formatting
 
