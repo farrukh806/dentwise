@@ -1,9 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { CrownIcon, LockIcon, Mic, MicIcon } from 'lucide-react';
+import { CrownIcon, LockIcon } from 'lucide-react';
 import Link from 'next/link';
-import { Navbar } from '../common/navbar';
-import WelcomeCard from '../common/welcome-card';
 
 function ProPlanRequired() {
   return (

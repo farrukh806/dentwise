@@ -1,7 +1,7 @@
 import StatusSection from '@/components/admin/status-section';
 import { currentUser } from '@clerk/nextjs/server';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { Settings, Stethoscope } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import { getQueryClient } from '../../query-client';
 import { doctorQueryOptions } from '@/lib/query-options/doctor';
@@ -9,7 +9,6 @@ import { appointmentQueryOptions } from '@/lib/query-options/appointment';
 import AppointmentTable from '@/components/admin/appointment-table';
 import StatusTable from '@/components/admin/status-table';
 import WelcomeCard from '@/components/common/welcome-card';
-import Wrapper from '@/components/common/container-wrapper';
 
 const AdminPage = async () => {
   const user = await currentUser();
