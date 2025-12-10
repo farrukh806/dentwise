@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { createVapiClient } from '@/lib/vapi';
 import { cn } from '@/lib/utils';
-import { PhoneCall, PhoneOff, Shield, User } from 'lucide-react';
+import { PhoneCall, PhoneOff, User } from 'lucide-react';
 import Image from 'next/image';
 import { useUser } from '@clerk/nextjs';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -24,7 +24,7 @@ const VapiWidget: React.FC = () => {
   const [assistantSpeaking, setAssistantSpeaking] = useState(false);
   const [userSpeaking, setUserSpeaking] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [vapi, setVapi] = useState<ReturnType<typeof createVapiClient>>(null);
+  const vapi = useRef<ReturnType<typeof createVapiClient>>(null);
   const userSpeechTimeout = useRef<NodeJS.Timeout | null>(null);
   const [transcripts, setTranscripts] = useState<Array<{ role: string; text: string }>>([]);
 
@@ -33,7 +33,7 @@ const VapiWidget: React.FC = () => {
 
   useEffect(() => {
     const client = createVapiClient();
-    setVapi(client);
+    vapi.current = client;
 
     if (!client) return;
 
@@ -88,7 +88,7 @@ const VapiWidget: React.FC = () => {
   const isBusy = callState === 'connecting' || callState === 'in-call';
 
   const handleToggleCall = useCallback(() => {
-    if (!vapi) {
+    if (!vapi.current) {
       setError('Vapi client is unavailable in this environment.');
       return;
     }
@@ -98,14 +98,14 @@ const VapiWidget: React.FC = () => {
     }
 
     if (callState === 'in-call' || callState === 'connecting') {
-      vapi.stop();
+      vapi.current.stop();
       setCallState('ended');
       return;
     }
 
     setError(null);
     setCallState('connecting');
-    vapi.start(assistantId);
+    vapi.current.start(assistantId);
   }, [assistantId, callState, vapi]);
 
   const primaryLabel = useMemo(() => {
