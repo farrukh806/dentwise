@@ -10,7 +10,6 @@ import { Button } from '../ui/button';
 
 const AppointmentTable = () => {
   const { data } = useSuspenseQuery(appointmentQueryOptions);
-  console.log(data);
   const getClassName = (status: AppointmentStatus) => {
     switch (status) {
       case AppointmentStatus.COMPLETED:
