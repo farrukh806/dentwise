@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 interface IAppointmentItem {
   icon: ReactNode;
   title: string;
-  description: string;
+  description: string | null;
 }
 const AppointmentItem: React.FC<IAppointmentItem> = (props) => {
   return (

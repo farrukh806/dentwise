@@ -5,7 +5,10 @@ import WelcomeCard from '@/components/common/welcome-card';
 import Action from '@/components/dashboard/action';
 import Appointments from '@/components/dashboard/appointments';
 import DentalJourney from '@/components/dashboard/dental-journey';
-import { patientAppointmentStatsOptions } from '@/lib/query-options/appointment';
+import {
+  patientAppointmentStatsOptions,
+  patientUpcomingAppointmentsOptions,
+} from '@/lib/query-options/appointment';
 import { currentUser } from '@clerk/nextjs/server';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Brain, Calendar, MessageSquare } from 'lucide-react';
@@ -17,7 +20,10 @@ const DashboardPage = async () => {
   const user = await currentUser();
   if (!user) redirect('/');
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(patientAppointmentStatsOptions);
+  await Promise.allSettled([
+    queryClient.prefetchQuery(patientAppointmentStatsOptions),
+    queryClient.prefetchQuery(patientUpcomingAppointmentsOptions),
+  ]);
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <WelcomeCard
