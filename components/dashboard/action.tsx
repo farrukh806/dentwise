@@ -62,7 +62,7 @@ const Action = () => {
                 <HowToUseItem title="Instant confirmations" />
               </ul>
               <Link
-                href={'/voice'}
+                href={'/appointments'}
                 className="mt-5 justify-center border rounded-sm p-1 flex items-center gap-2 transition duration-500  hover:bg-primary hover:text-white"
               >
                 <Calendar className="w-5 h-5" color="white" />

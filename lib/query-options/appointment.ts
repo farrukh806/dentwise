@@ -3,6 +3,7 @@ import {
   getAppointments,
   getPatientAppointmentStats,
   getPatientUpcomingAppointments,
+  getAppointmentTypes,
 } from '../actions/appointments';
 import prisma from '../prisma';
 
@@ -43,6 +44,14 @@ export const patientUpcomingAppointmentsOptions = queryOptions({
     if (!result.success) {
       throw new Error(result.error);
     }
+    return result.data;
+  },
+});
+
+export const appointmentTypesOptions = queryOptions({
+  queryKey: ['appointmentTypes'],
+  queryFn: async () => {
+    const result = await getAppointmentTypes();
     return result.data;
   },
 });

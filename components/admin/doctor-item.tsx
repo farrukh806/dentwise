@@ -1,7 +1,6 @@
 import { Card } from '../ui/card';
 import Image from 'next/image';
-import { MessageSquare, Pencil, Phone } from 'lucide-react';
-import { Button } from '../ui/button';
+import { MessageSquare, Phone } from 'lucide-react';
 import { AddUpdateDoctor } from './add-update-doctor';
 import { Gender } from '@/app/prisma/generated/enums';
 

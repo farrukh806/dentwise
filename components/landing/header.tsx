@@ -17,13 +17,13 @@ const Header = () => {
           <span className="font-semibold text-lg">DentWise</span>
         </Link>
         <div className="hidden md:flex items-center gap-8">
-          <Link href="#" className="text-muted-foreground hover:text-foreground">
+          <Link href="#features" className="text-muted-foreground hover:text-foreground">
             How it Works
           </Link>
-          <Link href="#" className="text-muted-foreground hover:text-foreground">
+          <Link href="#pricing" className="text-muted-foreground hover:text-foreground">
             Pricing
           </Link>
-          <Link href="#" className="text-muted-foreground hover:text-foreground">
+          <Link href="#about" className="text-muted-foreground hover:text-foreground">
             About
           </Link>
         </div>

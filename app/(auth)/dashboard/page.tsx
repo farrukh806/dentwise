@@ -60,7 +60,7 @@ const DashboardPage = async () => {
                     <Link href="/voice" className="bg-primary p-2 text-black rounded-sm">
                       Try AI Assistant
                     </Link>
-                    <Link href="#" className="bg-white/5 p-2 rounded-sm">
+                    <Link href="/appointments" className="bg-white/5 p-2 rounded-sm">
                       Book Appointment
                     </Link>
                   </div>
