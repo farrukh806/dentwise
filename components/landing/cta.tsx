@@ -1,11 +1,15 @@
+'use client';
 import SignInButton from '../common/sign-in-button';
 import { Calendar, Mic } from 'lucide-react';
 import { Button } from '../ui/button';
 import SignUpButton from '../common/sign-up-button';
 import Image from 'next/image';
 import ActionSection from './action-section';
+import { useUser } from '@clerk/nextjs';
+import Link from 'next/link';
 
 const Cta = () => {
+  const { isSignedIn } = useUser();
   return (
     <section className="relative flex items-center overflow-hidden py-20 md:py-24 lg:py-22">
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-10">
@@ -30,18 +34,36 @@ const Cta = () => {
               />
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                <SignInButton>
-                  <Button size={'lg'} className="w-full sm:w-auto">
-                    <Mic className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                    <span>Start free chat</span>
-                  </Button>
-                </SignInButton>
-                <SignUpButton>
-                  <Button size={'lg'} variant={'outline'} className="w-full sm:w-auto">
-                    <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2" />
-                    <span>Book appointment</span>
-                  </Button>
-                </SignUpButton>
+                {!isSignedIn ? (
+                  <SignInButton>
+                    <Button size={'lg'} className="w-full sm:w-auto">
+                      <Mic className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                      <span>Start free chat</span>
+                    </Button>
+                  </SignInButton>
+                ) : (
+                  <Link href={'/voice'}>
+                    <Button size={'lg'} className="w-full sm:w-auto">
+                      <Mic className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                      <span>Start free chat</span>
+                    </Button>
+                  </Link>
+                )}
+                {!isSignedIn ? (
+                  <SignUpButton>
+                    <Button size={'lg'} variant={'outline'} className="w-full sm:w-auto">
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                      <span>Book appointment</span>
+                    </Button>
+                  </SignUpButton>
+                ) : (
+                  <Link href={'/appointments'}>
+                    <Button size={'lg'} variant={'outline'} className="w-full sm:w-auto">
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+                      <span>Book appointment</span>
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
 

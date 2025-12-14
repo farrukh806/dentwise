@@ -1,6 +1,6 @@
 # DentWise - Your AI-Powered Dental Assistant
 
-![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen?style=flat-square)
 ![Next.js](https://img.shields.io/badge/Next.js-16.0.5-black?style=flat-square)
 ![React](https://img.shields.io/badge/React-19.2.0-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
@@ -9,26 +9,129 @@
 
 DentWise is an AI-powered dental assistant application that helps users get instant answers about dental concerns, receive preliminary diagnoses, connect with qualified dentists, and track their dental health journey.
 
+## 📸 Screenshots
+
+### Landing Page
+
+![Hero Section](public/screenshots/landing-page-hero.png)
+_Modern hero section with clear call-to-action_
+
+![How It Works](public/screenshots/landing-page-process.png)
+_4-step process explaining the platform_
+
+![Pricing Plans](public/screenshots/landing-page-pricing-cta.png)
+_Flexible pricing tiers with feature comparison_
+
+![FAQs](public/screenshots/landing-page-faqs.png)
+_Frequently asked questions section_
+
+![Call to Action](public/screenshots/landing-page-cta.png)
+_Engaging CTA section_
+
+### Application Pages
+
+![Dashboard](public/screenshots/dashboard-page.png)
+_Personalized user dashboard with appointments and health tracking_
+
+![Appointments](public/screenshots/appointments-page.png)
+_Multi-step appointment booking flow_
+
+![Voice Assistant](public/screenshots/voice-page.png)
+_AI-powered voice consultation interface_
+
+![Pro Subscription](public/screenshots/pro-page.png)
+_Subscription management and upgrade page_
+
 ### Features
 
-- **Ask Questions**: Chat with our AI assistant about any dental concerns
-- **Get Diagnosis**: Receive AI-powered preliminary diagnosis based on your symptoms
-- **Find Dentist**: Connect with qualified dentists in your area
-- **Track Progress**: Monitor your dental health journey with detailed records
+#### 🏥 Appointment Booking System
+
+- **Multi-Step Booking Flow**: Intuitive 3-step appointment booking process
+  - **Step 1 - Select Dentist**: Browse and select from available dentists with detailed profiles
+  - **Step 2 - Choose Date & Time**:
+    - Select appointment type (Regular Checkup, Teeth Cleaning, Consultation, Emergency Visit)
+    - Choose from available dates (next 5 days)
+    - Pick available time slots (9 AM - 5 PM, 30-minute intervals)
+    - Real-time slot availability checking
+  - **Step 3 - Confirm Booking**: Review appointment details and confirm
+- **Appointment Management**: View upcoming appointments on dashboard
+- **Real-time Availability**: Dynamic slot booking with conflict prevention
+- **Appointment Types**: Multiple service types with different durations and pricing
+
+#### 🎨 User Interface
+
+- **Responsive Design**: Mobile-first design that works seamlessly across all devices
+- **Modern Landing Page**:
+  - Hero section with clear call-to-action
+  - How It Works section explaining the 4-step process
+  - Pricing tiers with feature comparison
+  - Testimonials and FAQ sections
+  - Smooth navigation with anchor links
+- **Dashboard**: Personalized user dashboard with:
+  - Welcome card with user greeting
+  - Upcoming appointments display
+  - Dental health journey tracking
+  - Quick action buttons for AI Assistant and Booking
+- **Theme Consistency**: Unified color scheme using primary theme colors throughout
+
+#### 🤖 AI-Powered Features
+
 - **Voice Assistant**: AI-powered voice consultations for premium subscribers
   - Real-time voice recognition
   - Natural language conversations
   - Instant AI responses
   - Conversation history tracking
-- **Subscription Plans**: Flexible pricing tiers with Clerk integration
-  - Free: Basic appointment booking
-  - AI Basic: Limited AI voice consultations
-  - AI Pro: Unlimited AI consultations
-- **Admin Dashboard**: Comprehensive admin panel for managing doctors and appointments
+  - Subscription-gated access (AI Basic/Pro plans)
+
+#### 💳 Subscription Management
+
+- **Flexible Pricing Tiers**: Three subscription levels via Clerk integration
+  - **Free**: Unlimited appointment booking, find dentists, basic features
+  - **AI Basic**: 10 AI voice calls/month, AI guidance, symptom assessment
+  - **AI Pro**: Unlimited AI voice calls, advanced analysis, personalized care plans
+- **Upgrade Flow**: Seamless upgrade experience with Clerk PricingTable
+- **Plan-based Access Control**: Feature gating based on subscription tier
+
+#### 👨‍⚕️ Admin Dashboard
+
+- **Comprehensive Management Panel**: Full-featured admin interface
   - Real-time metrics and statistics
-  - Doctor management (add, edit, view)
-  - Appointment tracking and management
-  - Status monitoring for doctors and appointments
+  - Total doctors, active doctors count
+  - Total appointments, completed appointments tracking
+- **Doctor Management**:
+  - Add new doctors with complete profiles
+  - Edit existing doctor information
+  - View all doctors with status indicators
+  - Auto-generated avatars based on gender
+  - Track appointment count per doctor
+- **Appointment Tracking**:
+  - View all appointments in data table format
+  - Filter and sort appointments
+  - Status management (Scheduled, Completed, Canceled)
+  - Color-coded status badges
+  - Patient and doctor information display
+
+#### 🔐 Authentication & Security
+
+- **Clerk Authentication**: Secure user authentication and session management
+- **User Synchronization**: Automatic user data sync with database
+- **Role-based Access**: Admin dashboard restricted to authorized users
+- **Protected Routes**: Route-level authentication for sensitive pages
+
+#### 🛠️ Technical Features
+
+- **Modular Component Architecture**: Reusable, well-organized components
+  - Separate components for appointment type selection, date calendar, time slots
+  - Shared UI components across the application
+  - Clean separation of concerns
+- **Server Actions**: Type-safe server-side operations with Next.js
+- **React Query Integration**: Efficient data fetching, caching, and synchronization
+  - Optimistic updates
+  - Automatic cache invalidation
+  - Query options for reusable data fetching logic
+- **Form Validation**: Zod schema validation with React Hook Form
+- **Type Safety**: Full TypeScript support with Prisma-generated types
+- **Code Quality**: ESLint, Prettier with Husky pre-commit hooks
 
 ## 🚀 Getting Started
 
@@ -121,6 +224,17 @@ npm run format:check
 │   │   ├── status-section.tsx
 │   │   ├── status-table.tsx
 │   │   └── doctor-item.tsx
+│   ├── appointments/      # Appointment booking components
+│   │   ├── doctor-selection.tsx
+│   │   ├── doctor-card.tsx
+│   │   ├── doctor-skeleton.tsx
+│   │   ├── date-selection.tsx
+│   │   ├── appointment-type-selection.tsx
+│   │   ├── date-calendar.tsx
+│   │   ├── time-slot-selection.tsx
+│   │   ├── confirmation-step.tsx
+│   │   ├── appointment-summary.tsx
+│   │   └── step.tsx
 │   ├── common/            # Common shared components
 │   │   ├── badge.tsx
 │   │   ├── data-table.tsx
@@ -130,6 +244,10 @@ npm run format:check
 │   │   ├── user-sync.tsx
 │   │   ├── welcome-card.tsx
 │   │   └── container-wrapper.tsx
+│   ├── dashboard/         # Dashboard components
+│   │   ├── action.tsx
+│   │   ├── appointments.tsx
+│   │   └── dental-journey.tsx
 │   ├── landing/           # Landing page components
 │   │   ├── header.tsx
 │   │   ├── hero.tsx
@@ -371,4 +489,4 @@ For questions or feedback, please reach out to the project maintainer.
 
 ---
 
-**Note**: This project is currently in progress. Features and documentation may be updated frequently.
+**Note**: This project has been completed with all core features implemented, including a full appointment booking system, admin dashboard, voice assistant integration, and subscription management.
