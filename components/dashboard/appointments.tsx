@@ -1,7 +1,7 @@
 'use client';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import AppointmentItem from './appointment-item';
-import { Calendar, Clock, ContactRound } from 'lucide-react';
+import { ContactRound } from 'lucide-react';
 import { patientUpcomingAppointmentsOptions } from '@/lib/query-options/appointment';
 import { toast } from 'sonner';
 

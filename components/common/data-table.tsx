@@ -1,6 +1,4 @@
 'use client';
-'use no memo';
-
 import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 import {

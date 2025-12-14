@@ -7,7 +7,6 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { createAppointment } from '@/lib/actions/appointments';
 import { doctorQueryOptions } from '@/lib/query-options/doctor';
 import { toast } from 'sonner';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import AppointmentSummary from './appointment-summary';
 

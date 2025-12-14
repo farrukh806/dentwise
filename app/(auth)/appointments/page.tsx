@@ -1,12 +1,8 @@
 'use client';
 import ConfirmationStep from '@/components/appointments/confirmation-step';
 import DateSelectionStep from '@/components/appointments/date-selection';
-import DoctorCard from '@/components/appointments/doctor-card';
 import DoctorSelectionStep from '@/components/appointments/doctor-selection';
 import Step from '@/components/appointments/step';
-import { Button } from '@/components/ui/button';
-import { doctorQueryOptions } from '@/lib/query-options/doctor';
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 
 const STEPS = ['Select Dentist', 'Choose Time', 'Confirm'];
