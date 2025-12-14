@@ -34,7 +34,13 @@ _Engaging CTA section_
 _Personalized user dashboard with appointments and health tracking_
 
 ![Appointments](public/screenshots/appointments-page.png)
-_Multi-step appointment booking flow_
+_Multi-step appointment booking flow - Doctor selection_
+
+![Appointment Date Selection](public/screenshots/appointment-date.png)
+_Appointment booking - Date and time selection step_
+
+![Appointment Confirmation](public/screenshots/appointment-confirm.png)
+_Appointment booking - Confirmation and review step_
 
 ![Voice Assistant](public/screenshots/voice-page.png)
 _AI-powered voice consultation interface_
