@@ -17,7 +17,7 @@ DentWise is an AI-powered dental assistant application that helps users get inst
 _Modern hero section with clear call-to-action_
 
 ![How It Works](public/screenshots/landing-page-process.png)
-_4-step process explaining the platform_
+_-step process explaining the platform_
 
 ![Pricing Plans](public/screenshots/landing-page-pricing-cta.png)
 _Flexible pricing tiers with feature comparison_
